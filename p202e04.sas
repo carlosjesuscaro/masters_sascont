@@ -19,17 +19,17 @@ run;
 title 'Department: Administration';
 proc print data = admin;
 run;
-title
+title;
 
 title 'Department: Stock & Shipping';
 proc print data = stock;
 run;
-title
+title;
 
 title 'Department: Purchasing';
 proc print data = purchasing;
 run;
-title
+title;
 
 /* Exercise 5 */
 
