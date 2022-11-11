@@ -31,3 +31,19 @@ proc print data = competition noobs;
 	var Store_Code Country City Postal_Code;
 run;
 title;
+
+/* Exercise 4 */
+proc print data = orion.customers_ex5;
+run;
+
+data names;
+	set orion.customers_ex5;
+	First_Name = propcase(scan(Name, 2, ', '));
+	Last_Name = propcase(scan(Name, 1, ' ,'));
+	if Gender = 'M' then New_Name = 'Mr. '!!First_Name!!' '!!Last_Name;
+	else if Gender = 'F' then New_Name = 'Ms. '!!First_Name!!' '!!Last_Name;
+run;
+
+proc print data = names;
+	var New_Name Name Gender;
+run;
