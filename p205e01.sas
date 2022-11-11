@@ -72,3 +72,20 @@ run;
 proc print data = split;
 	var Employee_ID Charity;
 run;
+
+
+/* Exercise 8 */
+proc print data  = orion.orders_midyear;
+run;
+
+
+data sales_stats;
+	set orion.orders_midyear;
+	MonthAvg = round(mean(of Month1-Month6));
+	MonthMax = max(of Month1-Month6);
+	MonthSum = sum(of Month1-Month6);
+run;
+
+proc print data = sales_stats;
+	var Customer_ID MonthAvg MonthMax MonthSum;
+run;
