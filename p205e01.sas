@@ -89,3 +89,21 @@ run;
 proc print data = sales_stats;
 	var Customer_ID MonthAvg MonthMax MonthSum;
 run;
+
+
+/* Exercise 9 */
+proc print data  = orion.orders_midyear;
+run;
+
+data freqcustomers;
+	set orion.orders_midyear;
+	Missing = nmiss(of Month1-Month6);
+	if Missing <= 1;
+	MonthMedian = median(of Month1-Month6);
+	MonthHighest = largest(1, of Month1-Month6);
+	Month2ndHighest = largest(2, of Month1-Month6);
+	drop Missing;
+run;
+
+proc print data = freqcustomers;
+run;
