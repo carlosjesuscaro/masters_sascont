@@ -47,3 +47,28 @@ run;
 proc print data = names;
 	var New_Name Name Gender;
 run;
+
+/* Exercise 6 */
+proc print data  = orion.employee_donations;
+run;
+
+data split;
+	set orion.employee_donations;
+	if find(Recipients, '%') = 0 then do;
+		Charity = Recipients !! ' 100%';
+		output;
+	end;
+	else do;
+		position = find(Recipients, '%, ');
+		Charity = substr(Recipients, 1, position);
+		output;
+		Charity = substr(Recipients, position + 3);
+		output;
+	end;	
+	
+	drop Recipients position;
+run;
+
+proc print data = split;
+	var Employee_ID Charity;
+run;
